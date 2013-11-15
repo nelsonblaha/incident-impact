@@ -9,8 +9,16 @@
                                                               ['K: or J:, Listserv, Wiki or Blog Outage', 2],
                                                               ['Pharos Outage, CRM or Academic Software Outage', 3],
                                                               ['Blackboard, MyMav, CS Gold or Web Hosting Outage', 4],
-                                                              ['Email, Network, AD, LDAP, Self Service, or Phone Outage', 5]]) %>
-    <%= f.input :service_impact %>
+                                                              ['Email, Network, AD, LDAP, Self Service, or Phone Outage', 5]], 
+                                                              @incident.initial_service_rating ) %>
+    <%= f.label :service_impact %>
+    <%= f.select :service_impact, options_for_select([['No Effect', 0], 
+                                                      ['Minor Effect', 1], 
+                                                      ['Significant Effect', 2], 
+                                                      ['Multiple Services Affected', 3], 
+                                                      ['Service(s) Down', 4],
+                                                      ['Critical Service Disruption', 5]], 
+                                                      @incident.service_impact)%>
     <%= f.input :time_impact %>
   </div>
 
