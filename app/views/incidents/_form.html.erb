@@ -19,7 +19,10 @@
                                                       ['Service(s) Down', 4],
                                                       ['Critical Service Disruption', 5]], 
                                                       @incident.service_impact)%>
-    <%= f.input :time_impact %>
+    <% if @incident.time_impact %>
+    <%= f.label :time_impact %>
+    <%= @incident.time_impact %>
+    <% end %>
   </div>
 
   <div class="form-actions">
