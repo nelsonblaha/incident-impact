@@ -10,16 +10,26 @@
   </head>
   <body>
     <%# application layout styled for Twitter Bootstrap 2.3 %>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
+      <header class="navbar navbar-fixed-top">
+        <nav class="navbar-inner">
+          <div class="container">
+            <%= render 'layouts/navigation' %>
+          </div>
+        </nav>
+      </header>                                          
     <main role="main">
       <div class="container">
         <div class="content">
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
+              <% if current_user %>
               <%= yield %>
+              <% else %>
+                <div class="alert alert-error">
+                  <p> You aren't logged in! </p>
+                </div>
+              <% end %>
             </div>
           </div>
           <footer>
@@ -27,5 +37,6 @@
         </div>
       </div>
     </main>
+    <%= render :partial => '/sessions/form', :user => @user %>  
   </body>
 </html>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  impact_index: 1
+  initial_service_rating: 1
+  service_impact: 1
+  time_impact: 1
+  escalation_policy: 1
+  user_id: 
+
+two:
+  impact_index: 1
+  initial_service_rating: 1
+  service_impact: 1
+  time_impact: 1
+  escalation_policy: 1
+  user_id: 

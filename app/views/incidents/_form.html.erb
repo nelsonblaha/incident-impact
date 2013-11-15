@@ -1,0 +1,20 @@
+<%= simple_form_for(@incident) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :description %>
+    <%= f.label :initial_service_rating %>
+    <%= f.select :initial_service_rating, options_for_select([['Client Issue', 0],
+                                                              ['Service Degradation/Interruption', 1], 
+                                                              ['K: or J:, Listserv, Wiki or Blog Outage', 2],
+                                                              ['Pharos Outage, CRM or Academic Software Outage', 3],
+                                                              ['Blackboard, MyMav, CS Gold or Web Hosting Outage', 4],
+                                                              ['Email, Network, AD, LDAP, Self Service, or Phone Outage', 5]]) %>
+    <%= f.input :service_impact %>
+    <%= f.input :time_impact %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Sign In</h3>
+  </div>
+  <div class="modal-body">
+
+<%= form_tag sessions_path do %>
+  <div class="control-group">
+      <%= label_tag :netid %>
+    <div class="control">
+      <%= text_field_tag :netid, '', autofocus: "autofocus" %>
+    </div>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+  </div>
+</div>
+  <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Sign in</button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+   </div>
+  </div>
+<% end %>

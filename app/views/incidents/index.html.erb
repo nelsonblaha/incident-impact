@@ -1,0 +1,44 @@
+<h1>Listing incidents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Incident ID</th>
+      <th></th>
+      <th>Description</th>
+      <th></th>
+      <th>Impact index</th>
+      <th></th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incidents.each do |incident| %>
+      <tr>
+        <td><%= incident.id %> </td>
+        <td></td>
+        <td><%= link_to incident.description, edit_incident_path(incident) %></td>
+        <td></td>
+        <% if incident.impact_index <= 2 %>
+          <td class="impact-low">
+        <% elsif incident.impact_index <= 5 %>
+          <td class="impact-med">
+        <% elsif incident.impact_index <= 8 %>
+          <td class="impact-hi">
+        <% else %>
+          <td class="impact-max">
+        <% end %>
+            <%= incident.impact_index %></td>
+        <td></td>
+        <td><%= incident.user.netid %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Incident', new_incident_path, class: "btn" %>
