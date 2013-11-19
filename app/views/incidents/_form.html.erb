@@ -28,11 +28,13 @@
       <div class="impact-max"> <%= @incident.escalation_policy %></div>
     <% end %>
   </div>
-  <div class="span4 form-actions">
+  <div class="span5 form-actions">
+  <div style="text-align:center">
     <%= f.button :submit %> |
     <% if @incident.id %>
     <%= link_to 'Destroy', @incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %> |
     <% end %>
     <%= link_to 'Back', incidents_path, class: "btn" %>        
+  </div>
   </div>
 <% end %>
