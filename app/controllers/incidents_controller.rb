@@ -29,6 +29,7 @@ class IncidentsController < ApplicationController
         
     respond_to do |format|
       if @incident.save
+        NewIncidentMailer.new_incident_notify(@incident).deliver
         format.html { redirect_to '/incidents', notice: 'Incident was successfully created.' }
         format.json { render action: '/incidents', status: :created }
       else

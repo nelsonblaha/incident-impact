@@ -20,7 +20,7 @@
       <tr>
         <td><%= incident.id %> </td>
         <td></td>
-        <td><%= link_to incident.description, edit_incident_path(incident) %></td>
+        <td><%= link_to incident.description, incident_path(incident) %></td>
         <td></td>
         <% if incident.impact_index <= 2 %>
           <td class="impact-low">

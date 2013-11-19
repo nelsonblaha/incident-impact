@@ -1,7 +1,7 @@
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Sign In</h3>
+    <h3 id="myModalLabel", style="color:black">Sign In</h3>
   </div>
   <div class="modal-body">
 
@@ -9,7 +9,7 @@
   <div class="control-group", style="color:black">
       <%= label_tag :netid %>
     <div class="control">
-      <%= text_field_tag :netid, '', autofocus: "autofocus" %>
+      <%= text_field_tag :netid, '', autofocus: "autofocus"%>
     </div>
       <%= label_tag :password %>
       <%= password_field_tag :password %>
