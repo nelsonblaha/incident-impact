@@ -1,8 +1,11 @@
 @import "bootstrap";
-body { padding-top: 60px; }
+body { 
+padding-top: 60px; 
+background-color: #0064b1;
+}
 @import "bootstrap-responsive";
 td {
-  border: 1px solid black;
+  border: 3px solid #939598;
   padding: 10px;
 }
 .impact-low {
@@ -21,6 +24,7 @@ td {
   color:red;
   font-weight:bold;
 }
-h1 {
-  text-shadow: 6px 6px 13px #C9C9C9;
+.form-actions {
+  border-color: #0064b1;
+  border-radius:25px;
 }

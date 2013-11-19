@@ -21,11 +21,18 @@
                                                       @incident.service_impact)%>
     <% if @incident.time_impact %>
     <%= f.label :time_impact %>
-    <%= @incident.time_impact %>
+      <div class="impact-max"><%= @incident.time_impact %></div>
+    <% end %>
+    <% if @incident.escalation_policy %>
+    <%= f.label :escalation_policy %>
+      <div class="impact-max"> <%= @incident.escalation_policy %></div>
     <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="span4 form-actions">
+    <%= f.button :submit %> |
+    <% if @incident.id %>
+    <%= link_to 'Destroy', @incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %> |
+    <% end %>
+    <%= link_to 'Back', incidents_path, class: "btn" %>        
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 class IncidentsController < ApplicationController
-  before_action :set_incident, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_incident, only: [ :show, :edit, :update, :destroy ]
+  before_action :escalation_policy, only: [ :edit, :update ]
   # GET /incidents
   # GET /incidents.json
   def index
@@ -26,14 +26,7 @@ class IncidentsController < ApplicationController
   def create
     @incident = Incident.new(incident_params)
     @incident.user = current_user
-    
-    ################################################################
-    #  Insert method to determine time impact here.                #
-    #  Determine time impact based on academic calendar.           #
-    #  Escalation policy will be handled at the model level        #
-    #  once I have installed and configured the 'whenever' gem.    # 
-    ################################################################
-    
+        
     respond_to do |format|
       if @incident.save
         format.html { redirect_to '/incidents', notice: 'Incident was successfully created.' }
@@ -77,6 +70,18 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:impact_index, :initial_service_rating, :service_impact, :time_impact, :escalation_policy, :user_id, :description)
+      params.require(:incident).permit(:impact_index, :initial_service_rating, :service_impact, :time_impact, :escalation_policy, :user_id, :description, :resolved)
+    end
+    
+    def escalation_policy
+      if !@incident.resolved?
+        if @incident.initial_service_rating == 0
+          @incident.escalation_policy = (( Time.now - @incident.created_at) / 5.hours ).round
+        elsif  @incident.initial_service_rating >= 0 
+          @incident.escalation_policy = (( Time.now - @incident.created_at) / 1.hours ).round
+        else
+          true
+        end
+      end
     end
 end
