@@ -77,4 +77,14 @@ IncidentImpactTracker::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  #Set up mailer config for UTA.
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: 'mail.uta.edu',
+  port: 25,
+  domain: 'uta.edu'
+  }
+
 end
