@@ -19,6 +19,7 @@ class IncidentsController < ApplicationController
 
   # GET /incidents/1/edit
   def edit
+    @netid = @incident.user ? @incident.user.netid : "unknown user"
   end
 
   # POST /incidents

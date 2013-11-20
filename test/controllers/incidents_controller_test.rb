@@ -36,7 +36,7 @@ class IncidentsControllerTest < ActionController::TestCase
 
   test "should update incident" do
     patch :update, id: @incident, incident: { escalation_policy: @incident.escalation_policy, impact_index: @incident.impact_index, initial_service_rating: @incident.initial_service_rating, service_impact: @incident.service_impact, time_impact: @incident.time_impact, user_id: @incident.user_id }
-    assert_redirected_to incident_path(assigns(:incident))
+    assert_redirected_to incidents_path
   end
 
   test "should destroy incident" do

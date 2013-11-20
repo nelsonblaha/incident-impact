@@ -34,7 +34,7 @@
         <% end %>
             <%= incident.impact_index %></td>
         <td></td>
-        <td><%= incident.user.netid %></td>
+        <td><%= incident.user ? incident.user.netid : "unknown user" %></td>
         <td></td>
         <td><% if incident.resolved? %>Resolved<%else%>Active<%end%></td>
       </tr>
