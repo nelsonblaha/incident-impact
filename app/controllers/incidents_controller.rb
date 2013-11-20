@@ -1,7 +1,6 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [ :show, :edit, :update, :destroy ]
   before_action :escalation_policy, only: [ :edit, :update ]
-  after_action :escalate_index, only: :index
   # GET /incidents
   # GET /incidents.json
   def index
@@ -79,7 +78,7 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:impact_index, :initial_service_rating, :service_impact, :time_impact, :escalation_policy, :user_id, :description, :resolved)
+      params.require(:incident).permit( :impact_index, :initial_service_rating, :service_impact, :time_impact, :escalation_policy, :user_id, :description, :resolved)
     end
     
     def escalation_policy
