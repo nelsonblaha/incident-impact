@@ -3,6 +3,19 @@
 
   <div class="form-inputs">
     <%= f.input :description %>
+
+    <% if @incident.created_at %>
+    <div class="control-group string optional incident_description"><label class="string optional control-label">
+    <label class="string optional control-label">
+    <%= "Created at: #{ @incident.created_at.to_s(:long)}" %>
+    </label></div>
+
+    <div class="control-group string optional incident_description"><label class="string optional control-label" for="created_by">
+    <label class="string optional control-label" for="created_by">
+    <%= "Created by: #{ @incident.user.netid}" %>
+    </label></div>
+    <% end %>
+
     <%= f.label :initial_service_rating %>
     <%= f.select :initial_service_rating, options_for_select([['Client Issue', 0],
                                                               ['Service Degradation/Interruption', 1], 
@@ -19,6 +32,8 @@
                                                       ['Service(s) Down', 4],
                                                       ['Critical Service Disruption', 5]], 
                                                       @incident.service_impact)%>
+    <%= f.input :resolved %>
+
     <% if @incident.time_impact %>
     <%= f.label :time_impact %>
       <div class="impact-max"><%= @incident.time_impact %></div>

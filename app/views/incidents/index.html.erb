@@ -11,6 +11,7 @@
       <th></th>
       <th>User</th>
       <th></th>
+      <th>Resolution Status</th>
       <th></th>
     </tr>
   </thead>
@@ -34,6 +35,8 @@
             <%= incident.impact_index %></td>
         <td></td>
         <td><%= incident.user.netid %></td>
+        <td></td>
+        <td><% if incident.resolved? %>Resolved<%else%>Active<%end%></td>
       </tr>
     <% end %>
   </tbody>

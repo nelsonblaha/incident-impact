@@ -30,8 +30,8 @@ class IncidentsController < ApplicationController
     respond_to do |format|
       if @incident.save
         NewIncidentMailer.new_incident_notify(@incident).deliver
-        format.html { redirect_to '/incidents', notice: 'Incident was successfully created.' }
-        format.json { render action: '/incidents', status: :created }
+        format.html { redirect_to @incident, notice: 'Incident was successfully created.' }
+        format.json { render action: @incident, status: :created }
       else
         format.html { render action: 'new' }
         format.json { render json: @incident.errors, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class IncidentsController < ApplicationController
   def update
     respond_to do |format|
       if @incident.update(incident_params)
-        format.html { redirect_to '/incidents', notice: 'Incident was successfully updated.' }
+        format.html { redirect_to incidents_path, notice: 'Incident was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
