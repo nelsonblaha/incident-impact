@@ -1,10 +1,12 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [ :show, :edit, :update, :destroy ]
   before_action :escalation_policy, only: [ :edit, :update ]
+  after_action :escalate_index, only: :index
   # GET /incidents
   # GET /incidents.json
   def index
     @incidents = Incident.all
+    escalate_index
   end
 
   # GET /incidents/1
@@ -62,6 +64,12 @@ class IncidentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def escalate_index
+    @incidents.each do |incident|
+      @incident = incident
+      escalation_policy
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -78,8 +86,10 @@ class IncidentsController < ApplicationController
       if !@incident.resolved?
         if @incident.initial_service_rating == 0
           @incident.escalation_policy = (( Time.now - @incident.created_at) / 5.hours ).round
+          @incident.save
         elsif  @incident.initial_service_rating >= 0 
           @incident.escalation_policy = (( Time.now - @incident.created_at) / 1.hours ).round
+          @incident.save
         else
           true
         end
